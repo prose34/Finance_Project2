@@ -15,15 +15,19 @@ $(document).ready(function() {
             url: queryURL,
             method: 'GET',
             }).then(function(response) {
-                console.log(response);
+                // console.log(response);
 
                 //check if definition exists otherwise do error word not found
                 
                 // for (var i = 0; i < response.length; i++);
-                for (var property in response) {
-                    console.log(response[property]);
-                    $('#APIresponse').text(response[property]);
-                }
+                // for (var property in response) {
+                //     console.log(response[property]);
+                //     $('#APIresponse').text(response[property]);
+                // }
+
+                $('#APIresponse').text(response.week52high - response.week52low);
+
+                console.log(response.week52high - response.week52low);
 
                 // var newWord = {
                 //     word: searchWord,
