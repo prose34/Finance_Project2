@@ -15,7 +15,7 @@ $(document).ready(function() {
             url: queryURL,
             method: 'GET',
             }).then(function(response) {
-                console.log(response);
+                // console.log(response);
 
                 //check if definition exists otherwise do error word not found
                 
