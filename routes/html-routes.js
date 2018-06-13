@@ -33,3 +33,6 @@ module.exports = function(app) {
   });
 
 };
+
+
+// USE APP.USE FOR HOME

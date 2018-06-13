@@ -18,12 +18,12 @@ body, html {
 }
 
 img.logo {
-    height: 65px;
-    width: 65px;
+    height: 75px;
+    width: 75px;
     border-radius: 40px;
     margin-right: 10px;
-    margin-left: 40px;
-    
+    /* border: 2px solid white; */
+    /* margin-left: 40px; */
 }
 
 .navbar {
@@ -34,6 +34,7 @@ img.logo {
     font-family: 'Playfair Display SC', serif;
     /* text-align: center; */
 }
+
 .navbar-dark .navbar-brand {
     font-size: 45px;
     padding-left: 15px;
@@ -57,13 +58,13 @@ img.logo {
     box-sizing: border-box;
     padding: 2em;
     line-height: 1.5;
+
     text-align: center;
     
 }
 
 
 /* VIDEO  */
-
 
 
 .no-video .video-container .poster,
@@ -85,3 +86,4 @@ img.logo {
     width: 100%;
     
 } */
+
