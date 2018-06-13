@@ -1,19 +1,86 @@
+
+/* @font-face {
+
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Inconsolata', monospace;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-family: 'Source Code Pro', monospace;
+    font-family: 'Josefin Slab', serif;
+    font-family: 'Playfair Display SC', serif;
+   
+
+} */
+
+
 body, html {
     height: 100%;
     margin: 0;
 }
 
 img.logo {
-    height: 50px;
-    width: 50px;
+    height: 65px;
+    width: 65px;
     border-radius: 40px;
     margin-right: 10px;
+    margin-left: 40px;
+    
 }
 
 .navbar {
-    /* font-size: 125%; */
+    font-size: 20px;
     border-bottom: 2px solid lightgray;
     background-color: gray;
     padding: 10px;
+    font-family: 'Playfair Display SC', serif;
     /* text-align: center; */
 }
+.navbar-dark .navbar-brand {
+    font-size: 45px;
+    padding-left: 15px;
+}
+
+
+    
+.navbar-expand-sm .navbar-collapse {
+    
+    padding-right: 50px;
+}
+
+.video-container {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    width: 1400px;
+    height: 700px; 
+    overflow: hidden; 
+
+  }
+  
+
+  video {
+    min-width: 100%;
+    min-height: 450px;
+    position: absolute;
+    top: 8%;
+    bottom: auto;
+
+   
+    height: 550px;
+  }
+
+  .overlay {
+    font-family: 'Playfair Display SC', serif;
+    background: rgba(233, 231, 231, 0.5);
+    position: absolute;
+    bottom: 220px;
+    left: 0;
+    right: 0;
+    width: 95%;
+    max-width: 45em;
+    margin: auto auto 1em;
+    box-sizing: border-box;
+    padding: 2em;
+    line-height: 1.5;
+    text-align: center;
+    
+  }
