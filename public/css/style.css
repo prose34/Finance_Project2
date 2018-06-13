@@ -1,5 +1,5 @@
 
-/* @font-face {
+/*  NOTES OF FONTS
 
     font-family: 'Raleway', sans-serif;
     font-family: 'Inconsolata', monospace;
@@ -9,7 +9,7 @@
     font-family: 'Playfair Display SC', serif;
    
 
-} */
+ */
 
 
 body, html {
@@ -39,36 +39,12 @@ img.logo {
     padding-left: 15px;
 }
 
-
-    
 .navbar-expand-sm .navbar-collapse {
     
     padding-right: 50px;
 }
 
-.video-container {
-    position: relative;
-    top: 0;
-    bottom: 0;
-    width: 1400px;
-    height: 700px; 
-    overflow: hidden; 
-
-  }
-  
-
-  video {
-    min-width: 100%;
-    min-height: 450px;
-    position: absolute;
-    top: 8%;
-    bottom: auto;
-
-   
-    height: 550px;
-  }
-
-  .overlay {
+.overlay {
     font-family: 'Playfair Display SC', serif;
     background: rgba(233, 231, 231, 0.5);
     position: absolute;
@@ -83,4 +59,29 @@ img.logo {
     line-height: 1.5;
     text-align: center;
     
-  }
+}
+
+
+/* VIDEO  */
+
+
+
+.no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}
+
+.video-container {
+    position: relative;
+    top:5px;
+    bottom: 0%;
+    left: 0%;
+    height: 650px;
+    width: auto;
+    overflow: hidden;
+
+}
+/* .video-container video.fillWidth {
+    width: 100%;
+    
+} */
