@@ -1,45 +1,64 @@
 $(document).ready(function() {
 
-    $('#searchTest').on('click', function() {
+    var investments;
 
-        event.preventDefault();
-        let searchWord = $('#searchStock').val().trim();
+    getInvestments();
 
-        // const queryURL = 'https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v1/entries/en/' + searchWord;
-        const queryURL = 'https://api.iextrading.com/1.0/stock/' + searchWord + '/stats';
+    function getInvestments() {
+        $.get("/api/portfolio", function(request, response) {
+            investments = request
+            // console.log(investments);
+            initializeTable(investments);
+            // console.log(request);
+            // console.log(response);
+        });
+    };
 
-        // https://api.iextrading.com/1.0/stock/aapl/stats
+    // console.log(investments);
+
+    function initializeTable(investments) {
+        $("#investmentTable").empty();
+
+        let portfolioValue = 0;
+
+        for(var i = 0; i<investments.length; i++) {
+
+            // console.log(investments);
+            // console.log(investments[i].symbol);
+            let companyTicker = investments[i].symbol;
+            let totalShares = investments[i].totalShares;
+            let costBasis = investments[i].costBasis;
+            let purchaseDate = investments[i].purchaseDate;
+
+            const queryURL = 'https://api.iextrading.com/1.0/stock/' + companyTicker + '/book';
+
+            $.ajax({
+                url: queryURL,
+                method: 'GET',
+                }).then(function(response) {
+                    // console.log(response);
+                    // console.log(investments[i].symbol);
+                    let marketValue = totalShares * response.quote.latestPrice;
+                    let originalCost = totalShares * costBasis;
+
+                    portfolioValue += marketValue; 
+                    // console.log(marketValue);
+                    // console.log(portfolioValue);
+                    let portfolioPercent = Math.round(((marketValue / portfolioValue) * 100) * 100)/100;
+
+                    let rateOfReturn = ((marketValue - originalCost) / (originalCost)) * 100;
+                    let gainLoss = marketValue - originalCost;
+
+                    $("#investmentTable").append("<tr><td>" + response.quote.companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+costBasis + "</td><td>" + purchaseDate + "</td><td>" + "$"+response.quote.latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + portfolioPercent+"%" + "</td><td>" + rateOfReturn+"%" + "</td><td>" + "$"+gainLoss + "</td></tr>");
+                });    
+
+            // $("#investmentTable").append("<tr><td>" + investments[i].symbol + "</td><td>" + investments[i].costBasis + "</td></tr>");
+        };
+
+        
+    };
 
 
-        $.ajax({
-            url: queryURL,
-            method: 'GET',
-            }).then(function(response) {
-                // console.log(response);
-
-                //check if definition exists otherwise do error word not found
-                
-                // for (var i = 0; i < response.length; i++);
-                // for (var property in response) {
-                //     console.log(response[property]);
-                //     $('#APIresponse').text(response[property]);
-                // }
-
-                $('#APIresponse').text(response.week52high - response.week52low);
-
-                console.log(response.week52high - response.week52low);
-
-                // var newWord = {
-                //     word: searchWord,
-                //     time: moment().format('MMMM Do YYYY, h:mm:ss a')
-                // }
-
-                // console.log(response);
-                console.log(searchWord);
-                // callGoogle();
-            });   
-
-    });
 
     $('#addInvestment').on('click', function() {
 
@@ -52,12 +71,13 @@ $(document).ready(function() {
 
         createNewInvestment();
 
-        function createNewInvestment(event) {
+        function createNewInvestment() {
 
             // event.preventDefault();
 
             if (!tickerInput.val().trim() || !sharesInput.val().trim() || !costBasisInput.val().trim() || !dateInput.val().trim()) {
                 alert("Please enter all investment information");
+                // Add more user validation? Correct symbol, no more than # of shares, no higher than x share price?
                 return;
             } else {
                 var newInvestment = {
@@ -66,21 +86,18 @@ $(document).ready(function() {
                     costBasis: costBasisInput.val().trim(),
                     purchaseDate: dateInput.val().trim(),
                 };
+                // console.log(newInvestment);
 
+                $.post("/api/portfolio", newInvestment);
+                // $.post("/api/portfolio", newInvestment, getInvestments);
 
-                console.log(newInvestment);
+                tickerInput.val("");
+                sharesInput.val("");
+                costBasisInput.val("");
+                dateInput.val("");
 
-                // $.post("/portfolio", newInvestment, getInvestments);
-                // tickerInput.val("");
-                // sharesInput.val("");
-                // costBasisInput.val("");
-                // dateInput.val("");
+                getInvestments();
             }
         }
-
-
     });
-
-
-
 });

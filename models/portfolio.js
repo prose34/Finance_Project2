@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 // insert here
             }
-        }
+        },        
     });
     
     return Investment;
