@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Investments = sequelize.define("Investments", {
+    var Investment = sequelize.define("Investment", {
         // Giving the Investment model a name type of String
         symbol: {
             type: DataTypes.STRING,
@@ -8,15 +8,8 @@ module.exports = function(sequelize, DataTypes) {
                 // insert here
             }
         },
-        purchasePrice: {
+        costBasis: {
             type: DataTypes.FLOAT(10, 2), //is this correct?
-            allowNull: false,
-            validate: {
-                // insert here
-            }
-        },
-        purchaseDate: {
-            type: DataTypes.DATE, //what is correct input format?
             allowNull: false,
             validate: {
                 // insert here
@@ -29,10 +22,17 @@ module.exports = function(sequelize, DataTypes) {
                 // insert here
             }
 
+        },
+        purchaseDate: {
+            type: DataTypes.DATE, //what is correct input format?
+            allowNull: false,
+            validate: {
+                // insert here
+            }
         }
     });
     
-    return Investments;
+    return Investment;
 }
 
 // add validation

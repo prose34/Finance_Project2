@@ -40,4 +40,47 @@ $(document).ready(function() {
             });   
 
     });
+
+    $('#addInvestment').on('click', function() {
+
+        event.preventDefault();
+
+        var tickerInput = $("#tickerInput");
+        var sharesInput = $("#sharesInput");
+        var costBasisInput = $("#costBasisInput");
+        var dateInput = $("#dateInput");
+
+        createNewInvestment();
+
+        function createNewInvestment(event) {
+
+            // event.preventDefault();
+
+            if (!tickerInput.val().trim() || !sharesInput.val().trim() || !costBasisInput.val().trim() || !dateInput.val().trim()) {
+                alert("Please enter all investment information");
+                return;
+            } else {
+                var newInvestment = {
+                    symbol: tickerInput.val().trim(),
+                    totalShares: sharesInput.val().trim(),
+                    costBasis: costBasisInput.val().trim(),
+                    purchaseDate: dateInput.val().trim(),
+                };
+
+
+                console.log(newInvestment);
+
+                // $.post("/portfolio", newInvestment, getInvestments);
+                // tickerInput.val("");
+                // sharesInput.val("");
+                // costBasisInput.val("");
+                // dateInput.val("");
+            }
+        }
+
+
+    });
+
+
+
 });
