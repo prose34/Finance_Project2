@@ -6,6 +6,10 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
+var passport = require("passport");
+var session = require ("express-session");
+var exphbs = require('express-handlebars');
+var env = require('dotenv').load();
 
 // Sets up the Express App
 // =============================================================
@@ -13,7 +17,7 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
-var db = require("./models");
+var db = require("./app/models");
 
 // Sets up the Express app to handle data parsing
 
@@ -25,9 +29,17 @@ app.use(bodyParser.json());
 // Static directory
 app.use(express.static("public"));
 
+// For Passport 
+
+app.use(session({secret:'keyboard cat', resave: true, saveUninitialized:true})); // session secret
+
+app.use(passport.initialize());
+ 
+app.use(passport.session()); // persistent login sessions
+
 // Routes
 // =============================================================
-require("./routes/html-routes.js")(app);
+require("./routes/html-routes.js")(app);  // change the routes!
 
 
 // Syncing our sequelize models and then starting our Express app
@@ -39,4 +51,26 @@ db.sequelize.sync().then(function() { //DO NOT USE { force: true }
 });
 
 
-// change the routes!
+
+
+
+// MODELS 
+
+// var models = require("./app/models");
+
+// Sync Database 
+
+// models.sequelize.sync().then(function(){
+//   console.log("Looking Good!")
+// }).catch(function(err){
+//   console.log(err, "Something went wrong!!!!")
+// });
+
+
+// For Handlebars
+
+// app.set('views', './app/models/views')
+// app.engine('hbs', exphbs({
+//     extname: '.hbs'
+// }));
+// app.set('view engine', '.hbs');

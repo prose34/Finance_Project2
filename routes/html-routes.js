@@ -15,6 +15,7 @@ module.exports = function(app) {
   // index route loads view.html
   app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
+    res.send('Welcome to Passport with Sequelize');
   });
 
   // about route loads about.html
@@ -31,6 +32,8 @@ module.exports = function(app) {
   app.get("/research", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/research.html"));
   });
+
+
 
 };
 
