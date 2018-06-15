@@ -1,3 +1,5 @@
+// var moment = require('moment');
+
 $(document).ready(function() {
 
     var investments;
@@ -20,50 +22,55 @@ $(document).ready(function() {
         $("#investmentTable").empty();
 
         let portfolioValue = 0;
-        let tableData = investments;
-        let investmentDataPromises = [];
+        // let tableData = investments;
+        // let investmentDataPromises = [];
 
         for(var i = 0; i<investments.length; i++) {
 
             // console.log(investments);
             // console.log(investments[i].symbol);
             let companyTicker = investments[i].symbol;
-            // let totalShares = investments[i].totalShares;
-            // let costBasis = investments[i].costBasis;
-            // let purchaseDate = investments[i].purchaseDate;
+            let totalShares = investments[i].totalShares;
+            let costBasis = investments[i].costBasis;
+            let purchaseDate = investments[i].purchaseDate;
 
             const queryURL = 'https://api.iextrading.com/1.0/stock/' + companyTicker + '/book';
 
-            investmentDataPromises.push($.ajax({
-                url: queryURL,
-                method: 'GET',
-            }));
-
-            // $.ajax({
+            // investmentDataPromises.push($.ajax({
             //     url: queryURL,
             //     method: 'GET',
-            //     }).then(function(response) {
-            //         // console.log(response);
-            //         // console.log(investments[i].symbol);
-            //         let marketValue = totalShares * response.quote.latestPrice;
-            //         let originalCost = totalShares * costBasis;
+            // }));
 
-            //         portfolioValue += marketValue; 
-            //         // console.log(marketValue);
-            //         // console.log(portfolioValue);
-            //         let portfolioPercent = Math.round(((marketValue / portfolioValue) * 100) * 100)/100;
+            $.ajax({
+                url: queryURL,
+                method: 'GET',
+                }).then(function(response) {
+                    // console.log(response);
+                    // console.log(investments[i].symbol);
+                    let marketValue = parseFloat(Math.round(totalShares * response.quote.latestPrice)).toFixed(0);
+                    let originalCost = totalShares * costBasis;
 
-            //         let rateOfReturn = ((marketValue - originalCost) / (originalCost)) * 100;
-            //         let gainLoss = marketValue - originalCost;
+                    // portfolioValue += marketValue; 
+                    // console.log(marketValue);
+                    // console.log(portfolioValue);
+                    // let portfolioPercent = ((marketValue / portfolioValue) * 100);
 
-            //         $("#investmentTable").append("<tr><td>" + response.quote.companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+costBasis + "</td><td>" + purchaseDate + "</td><td>" + "$"+response.quote.latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + portfolioPercent+"%" + "</td><td>" + rateOfReturn+"%" + "</td><td>" + "$"+gainLoss + "</td></tr>");
-            //     });    
+                    // parseFloat(Math.round(num3 * 100) / 100).toFixed(2);
+
+                    let rateOfReturn = parseFloat(Math.round(((marketValue - originalCost) / originalCost) * 100)).toFixed(1);
+                    let gainLoss = Math.round(marketValue - originalCost);
+
+                    $("#investmentTable").append("<tr><td>" + response.quote.companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+costBasis + "</td><td>" + purchaseDate + "</td><td>" + "$"+response.quote.latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + rateOfReturn+"%" + "</td><td>" + "$"+gainLoss + "</td></tr>");
+                });    
         };
 
-        Promise.all(investmentDataPromises)
-        .then(function(responses) {
-            console.log(responses);
-            console.log(investments);
+        // Promise.all(investmentDataPromises)
+        // .then(function(response) {
+        //     console.log(response);
+        //     console.log(investments);
+
+            // $("#investmentTable").append("<tr><td>" + response.quote.companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+costBasis + "</td><td>" + purchaseDate + "</td><td>" + "$"+response.quote.latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + portfolioPercent+"%" + "</td><td>" + rateOfReturn+"%" + "</td><td>" + "$"+gainLoss + "</td></tr>");
+
             // responses.forEach(function(response, i) {
             //     tableData[i]['latestPrice'] = response.quote.latestPrice;
             // });
@@ -73,7 +80,7 @@ $(document).ready(function() {
             // investmentTr.append(numericTd(response.quote.latestPrice))
             // investmentTr.appendTo($('#investmentTable'));
 
-        });
+        // });
         
     };
 
