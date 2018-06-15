@@ -6,6 +6,8 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
+// var moment = require('moment');
+
 
 // Sets up the Express App
 // =============================================================
@@ -28,6 +30,7 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);
+require("./routes/portfolio-routes.js")(app);
 
 
 // Syncing our sequelize models and then starting our Express app
