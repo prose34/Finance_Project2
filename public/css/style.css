@@ -87,7 +87,7 @@ img.logo {
     
 } */
 
-/* Materialize  */
+/* Materialize  Modal*/
 
 body
 {
@@ -96,14 +96,14 @@ body
 
 h5
 {
-	font-weight: 300;
+	font-weight: 300px;
 }
 
 .container
 {
 	margin-top: 80px;
 	width: 400px;
-	height: 700px;
+	height: 500px;
 }
 
 .tabs .indicator
@@ -128,6 +128,9 @@ h5
 }
 
 
-.teal-text {
+.text {
     font-size: 40px;
 }
+
+
+
