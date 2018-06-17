@@ -29,17 +29,46 @@ app.use(bodyParser.json());
 // Static directory
 app.use(express.static("public"));
 
-// For Passport 
 
+// For Passport 
+// =============================================================
 app.use(session({secret:'keyboard cat', resave: true, saveUninitialized:true})); // session secret
 
 app.use(passport.initialize());
  
 app.use(passport.session()); // persistent login sessions
 
+// MODELS 
+// =============================================================
+
+var models = require("./app/models");
+
 // Routes
 // =============================================================
-require("./routes/html-routes.js")(app);  // change the routes!
+require("./routes/html-routes.js")(app,passport);  // change the routes!
+// var authRoute = require('./app/routes/auth.js')(app); // not needed anymore becuase we put the auth.js inside the // html routes
+
+// Load passport strategies from passport.js
+// =============================================================
+require("./config/passport/passport.js")(passport, models.user);
+
+
+// Sync Database 
+// =============================================================
+models.sequelize.sync().then(function(){
+  console.log("Looking Good!")
+}).catch(function(err){
+  console.log(err, "Something went wrong!!!!")
+});
+
+
+// For Handlebars
+// =============================================================
+app.set('views', './app/views')
+app.engine('hbs', exphbs({
+    extname: '.hbs'
+}));
+app.set('view engine', '.hbs');
 
 
 // Syncing our sequelize models and then starting our Express app
@@ -49,28 +78,3 @@ db.sequelize.sync().then(function() { //DO NOT USE { force: true }
     console.log("App listening on PORT " + PORT);
   });
 });
-
-
-
-
-
-// MODELS 
-
-// var models = require("./app/models");
-
-// Sync Database 
-
-// models.sequelize.sync().then(function(){
-//   console.log("Looking Good!")
-// }).catch(function(err){
-//   console.log(err, "Something went wrong!!!!")
-// });
-
-
-// For Handlebars
-
-// app.set('views', './app/models/views')
-// app.engine('hbs', exphbs({
-//     extname: '.hbs'
-// }));
-// app.set('view engine', '.hbs');
