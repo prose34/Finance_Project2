@@ -16,6 +16,19 @@ $(document).ready(function() {
 
     // console.log(investments);
 
+ 
+    function renderNumericTd(number) {
+        var td = $("<td>$" + number + "</td>");
+
+        if (number > 0) {
+            td.addClass('greenProfitFontColor');
+        } else {
+            td.addClass('redLossFontColor');
+        }
+
+        return td;
+    }
+
     function initializeTable(investments) {
         $("#investmentTable").empty();
         $("#totalProfitLossTable").empty();
