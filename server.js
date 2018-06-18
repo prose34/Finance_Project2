@@ -10,6 +10,8 @@ var passport = require("passport");
 var session = require ("express-session");
 var exphbs = require('express-handlebars');
 var env = require('dotenv').load();
+// var moment = require('moment');
+
 
 // Sets up the Express App
 // =============================================================
@@ -69,6 +71,8 @@ app.engine('hbs', exphbs({
     extname: '.hbs'
 }));
 app.set('view engine', '.hbs');
+
+require("./routes/portfolio-routes.js")(app);
 
 
 // Syncing our sequelize models and then starting our Express app
