@@ -87,3 +87,14 @@ img.logo {
     
 } */
 
+
+
+/* Portfolio red/green font selectors */
+
+.greenProfitFontColor {
+    color: green
+}
+
+.redLossFontColor {
+    color: red;
+}

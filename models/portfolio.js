@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
 
         },
         purchaseDate: {
-            type: DataTypes.DATE, //what is correct input format?
+            type: DataTypes.DATEONLY, //what is correct input format?
             allowNull: false,
             validate: {
                 // insert here
