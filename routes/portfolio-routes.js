@@ -15,7 +15,12 @@ module.exports = function(app) {
   // GET route for getting all of the todos
   app.get("/api/portfolio", function(req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Investment.findAll({}).then(function(dbInvestment) {
+    console.log(req.user);
+    db.Investment.findAll({
+      where: {
+        UserId: req.user.id
+      },
+    }).then(function(dbInvestment) {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbInvestment);
     //   console.log(dbInvestment);
@@ -33,7 +38,8 @@ module.exports = function(app) {
         symbol: req.body.symbol,
         costBasis: req.body.costBasis,
         totalShares: req.body.totalShares,
-        purchaseDate: req.body.purchaseDate
+        purchaseDate: req.body.purchaseDate,
+        UserId: req.user.id
     }).then(function(dbInvestment) {
       // We have access to the new investment as an argument inside of the callback function
       res.json(dbInvestment);
