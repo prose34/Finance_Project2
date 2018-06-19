@@ -218,8 +218,11 @@ $(document).ready(function() {
                     purchaseDate: dateInput.val().trim(),
                 };
                 // console.log(newInvestment);
+                
 
-                $.post("/api/portfolio", newInvestment);
+                $.post("/api/portfolio", newInvestment).then(function() {
+                    location.reload();
+                });
                 // $.post("/api/portfolio", newInvestment, getInvestments);
 
                 tickerInput.val("");
