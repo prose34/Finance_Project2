@@ -174,6 +174,11 @@ $(document).ready(function() {
             } else if (totalProfitLoss < 0) {
                 $(".totalGainLossColor").addClass("redLossFontColor")
             }
+
+            if(totalInvestmentCost === 0) {
+                $("#totalProfitLossTable").empty();
+
+            }
             // $("#investmentTable").append("<tr><td>" + companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+costBasis + "</td><td>" + purchaseDate + "</td><td>" + "$"+latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + portfolioPercent+"%" + "</td><td>" + rateOfReturn+"%" + "</td><td>" + "$"+gainLoss + "</td></tr>");
 
             // $("#investmentTable").append("<tr><td>" + response.quote.companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+costBasis + "</td><td>" + purchaseDate + "</td><td>" + "$"+response.quote.latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + portfolioPercent+"%" + "</td><td>" + rateOfReturn+"%" + "</td><td>" + "$"+gainLoss + "</td></tr>");
