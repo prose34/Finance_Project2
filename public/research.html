@@ -75,13 +75,13 @@
                 <source src="./images/finance.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
             </video>
 
-            <div class="overlay" id="overlay1" style="top: 250px; position: relative; background-color: rgb(0,0,0,.6); border-radius: 25px;">
+            <div class="overlay" id="overlay1" style="top: 175px; position: relative; background-color: rgb(53,58,63,.7); border-radius: 25px;">
                 <h1 id="statement1" style="color: white">Researh</h1>
                 <br>
                 <!-- input search content -->
                 <div class="container-fluid" id="overlay2">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="  Enter Stock Symbol" aria-label="Enter Stock Symbol" aria-describedby="basic-addon2"
+                        <input type="text" class="form-control"  placeholder="  Enter Stock Symbol" aria-label="Enter Stock Symbol" aria-describedby="basic-addon2" 
                             id='stockInput' style="text-transform: uppercase; width: 70%; background-color: white" onkeyup="this.value = this.value.toUpperCase();">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" id="stockSearch" style="color: white; border: solid 1px white; height: 46px; background-color: #2E3338">Search</button>
@@ -102,6 +102,7 @@
                             <script type="text/javascript">
                                 $('#stockSearch').on('click', function () {
                                     stockSearch = $('#stockInput').val().trim();
+                                    $('#stockInput').html("Enter Stock");
                                     $('#statement1').hide();
                                     $('#stockName').html('');
                                     $('#colLeft').html('');
@@ -109,7 +110,7 @@
                                     $('.listResults').show('slow');
                                     var overlay = $('.overlay');
                                     overlay.attr('style',
-                                        'max-width:100%; position: static; margin-top: 50px; height: fit-content; border: 1px solid white; padding: 10px;box-shadow: 5px 10px rgb(128, 128, 128, .2); background-color: rgb(0,0,0,.7); border-radius: 25px;'
+                                        'max-width:100%; position: static; margin-top: 50px; height: fit-content; border: 1px solid white; padding: 10px;box-shadow: 5px 10px rgb(128, 128, 128, .2); background-color: rgb(53,58,63,.7); border-radius: 25px;'
                                     );
 
 
@@ -201,8 +202,12 @@
                                         "container_id": "tradingview_12ad5"
                                     });
 
-
                                 });
+                                $('#stockInput').keypress(function(e){
+                                    if(e.which == 13){
+                                        $('#stockSearch').click();
+                                    }
+                            });
                             </script>
                         </div>
                         <!-- Graph Chart END -->
@@ -227,6 +232,8 @@
                 <script src="http://widgets.freestockcharts.com/script/WBIHorizontalTicker2.js?ver=12334" type="text/javascript"></script>
                 <link href="http://widgets.freestockcharts.com/WidgetServer/WBITickerblue.css" rel="stylesheet" type="text/css" />
                 <script>
+
+                    
                     var gainerTick = new WBIHorizontalTicker('gainers');
                     gainerTick.start();
                     var loserTick = new WBIHorizontalTicker('losers');

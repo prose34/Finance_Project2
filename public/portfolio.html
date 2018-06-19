@@ -24,7 +24,7 @@
    
 </head>
 
-<body>
+<body class="portfolioBackground">
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <img class="logo" src="./images/goldcoin2.jpg"/>
@@ -75,7 +75,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">SYMBOL</span>
                 </div>
-                <input type="text" placeholder="Enter the Ticker Symbol" class="form-control" id="tickerInput">
+                <input type="text" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter the Ticker Symbol" class="form-control" id="tickerInput">
             </div>
         </div>
 

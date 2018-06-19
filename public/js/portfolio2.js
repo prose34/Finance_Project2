@@ -202,6 +202,9 @@ $(document).ready(function() {
         function createNewInvestment() {
 
             // event.preventDefault();
+            // do an ajax call against this list to check if ticker is valid: https://api.iextrading.com/1.0/ref-data/symbols
+
+
 
             if (!tickerInput.val().trim() || !sharesInput.val().trim() || !costBasisInput.val().trim() || !dateInput.val().trim()) {
                 alert("Please enter all investment information");
