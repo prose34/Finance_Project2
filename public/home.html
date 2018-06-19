@@ -4,13 +4,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Finanza</title>
+	<!-- materialze link  -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+	<!-- tab and search icons  -->
+	<link rel="shortcut icon" href="./images/f.jpg">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Latest compiled and minified CSS & JS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/style.css" media="screen" title="no title">
-	<link rel="shortcut icon" href="./images/f.jpg">
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Josefin+Slab|PT+Sans+Narrow|Playfair+Display+SC|Raleway|Source+Code+Pro" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+>
+
 </head>
 
 <body>
@@ -30,12 +40,19 @@
                     <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/portfolio">Portfolio</a>
+					<!-- Modal Trigger -->
+					<a class="waves-effect waves-light modal-trigger nav-link" href="#modal1">Portfolio</a> 
+					<!-- portfolio.html -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/research">Research</a>
-                </li>
-            </ul>
+                    <a class="nav-link" href="research.html">Research</a>
+				</li>
+				<li class="nav-item">
+                    <a class="nav-link" href="/logout">Log Out<span class="sr-only"></span></a>
+				</li>
+			
+
+			</ul>
         </div>
 	</nav>    
 
@@ -61,6 +78,108 @@
 	</div>
 	
 
+	<!-- MODAL W/ MATERIALIZE LOG IN AND REGISTER -->
+
+
+	<!-- Modal Structure -->
+	<div id="modal1" class="modal">
+		<!-- <div class="modal-content"> -->
+		  
+			<!-- <div class="container white z-depth-2"> -->
+
+				<ul class="tabs grey tabs-fixed-width tab-demo z-depth-1">
+					<li class="tab col s3"><a class="white-text active" href="#login">login</a></li>
+					<li class="tab col s3"><a class="white-text" href="#register">register</a></li>
+				</ul>
+
+				<div id="login" class="col s12">
+					
+					<div class="form-container">
+						<br>
+						<h3 class="text">Hello</h3>
+						<br>
+						<form id="signin" name="signin" method="post" action="/signin">
+							<div class="row">
+								<div class="input-field col s12">
+									<input id="email" type="email" name="email" class="text">
+									<label for="email">Email</label>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="input-field col s12">
+									<input name="password" id="password" type="password" class="validate">
+									<label for="password">Password</label>
+								</div>
+							</div>
+							<br>
+							<center>
+								<button class="btn waves-effect waves-light grey" type="submit" name="action" value="Sign In">Sign In</button>
+								<br>
+								<br>
+							</center>
+						</form>
+					</div>
+			
+				</div>
+
+
+				<div id="register" class="col s12">
+					
+					<div class="form-container">
+						<br>
+						<h3 class="text">Welcome to Finanza</h3>
+				
+						<form id="signup" name="signup" method="post" action="/signup">
+							<div class="row">
+								<div class="input-field col s6">
+									<input name="firstname" id="first_name" type="text" class="validate">
+									<label for="firstname">First Name</label>
+								</div>
+								<div class="input-field col s6">
+									<input name="lastname" id="last_name" type="text" class="validate">
+									<label for="lastname">Last Name</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<input name="email" id="email" type="email" class="validate">
+									<label for="email">Email</label>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="input-field col s12">
+									<input name="password" id="password" type="password" class="validate">
+									<label for="password">Password</label>
+								</div>
+							</div>
+	
+							<center>
+								<button class="btn waves-effect waves-light grey" type="submit" value="SignUp" name="action">Sign Up</button>
+								<br>
+								<br>
+				
+								
+							</center>
+					    </form>
+						</div>
+					
+				</div>
+			<!-- </div> -->
+
+		<!-- </div> -->
+		
+	</div>
+			  
+
+
+
+
+
+
+
+
 	<!-- TICKER -->
 
 	<div class="Container">
@@ -72,7 +191,20 @@
 		</div>
 
 	</div>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script>  
+		$(document).ready(function(){
+			$('.modal').modal();
+		});
+		
+		$(document).ready(function(){
+   			 $('.tabs').tabs();
+		});
+		
 
+
+
+	</script>
 </body>
 
 </html>
