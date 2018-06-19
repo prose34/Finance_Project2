@@ -16,10 +16,35 @@ $(document).ready(function() {
 
     // console.log(investments);
 
+    function renderNumericTd(number) {
+        var td = $("<td>$" + number + "</td>");
+
+        if (number > 0) {
+            td.addClass('greenProfitFontColor');
+        } else {
+            td.addClass('redLossFontColor');
+        }
+
+        return td;
+    }
+
+
+    function renderNumericTdPercent(number) {
+        var td = $("<td>" + number + "%</td>");
+
+        if (number > 0) {
+            td.addClass('greenProfitFontColor');
+        } else {
+            td.addClass('redLossFontColor');
+        }
+
+        return td;
+    }
+
+
     function initializeTable(investments) {
         $("#investmentTable").empty();
         $("#totalProfitLossTable").empty();
-
 
         let investmentDataPromises = [];
 
@@ -93,26 +118,40 @@ $(document).ready(function() {
                 totalProfitLoss += gainLoss;
 
 
-                $("#investmentTable").append("<tr><td>" + companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+costBasis + "</td><td>" + purchaseDate + "</td><td>" + "$"+latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + portfolioPercent+"%" + "</td><td>" + rateOfReturn+"%" + "</td><td class='gainLossColor'>" + "$"+gainLoss + "</td></tr>");
+                // $("#investmentTable").append("<tr><td>" + companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+costBasis + "</td><td>" + purchaseDate + "</td><td>" + "$"+latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + portfolioPercent+"%" + "</td><td>" + rateOfReturn+"%" + "</td><td class='gainLossColor'>" + "$"+gainLoss + "</td></tr>");
+
+                var row = $('<tr>');
+                row.append($("<td>" + companyName + "</td>"));
+                row.append($("<td>" + companyTicker + "</td)>"));
+                row.append($("<td>" + totalShares + "</td>"));
+                row.append($("<td>" + "$"+costBasis + "</td>"));
+                row.append($("<td>" + purchaseDate + "</td>"));
+                row.append($("<td>" + "$"+latestPrice + "</td>"));
+                row.append($("<td>" + "$"+marketValue + "</td>"));
+                row.append($("<td>" + portfolioPercent+"%" + "</td>"));
+                row.append(renderNumericTdPercent(rateOfReturn));
+                row.append(renderNumericTd(gainLoss));
+
+                $("#investmentTable").append(row);                
 
 
-                var counter = 0;
+                // var counter = 0;
 
-                $(".gainLossColor").each(function () {
-                    counter++;
-                    var currentCell = $(this);
-                    currentCell.addClass("row_"+counter);
+                // $(".gainLossColor").each(function () {
+                //     counter++;
+                //     var currentCell = $(this);
+                //     currentCell.addClass("row_"+counter);
 
-                    console.log(gainLoss);
+                //     console.log(gainLoss);
 
-                    if(gainLoss > 0) {
-                        $('.row_'+counter).addClass("greenProfitFontColor");
-                    } else if (gainLoss < 0) {
-                        $('.row_'+counter).addClass("redLossFontColor");
-                    }
+                //     if(gainLoss > 0) {
+                //         $('.row_'+counter).addClass("greenProfitFontColor");
+                //     } else if (gainLoss < 0) {
+                //         $('.row_'+counter).addClass("redLossFontColor");
+                //     }
 
 
-                })
+                // })
                 
             }
 
