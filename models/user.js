@@ -37,9 +37,15 @@ module.exports = function(sequelize, Sequelize) {
         last_login: {
             type: Sequelize.DATE
         },
- 
-      
     });
+
+    // User.associate = function(models) {
+    //     // Associating User with Investments
+    //     // When an User is deleted, also delete any associated Investments
+    //     User.hasMany(models.Investment, {
+    //       onDelete: "cascade"
+    //     });
+    // };
  
     return User;
  

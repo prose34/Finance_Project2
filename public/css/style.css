@@ -48,13 +48,14 @@ img.logo {
 .overlay {
     font-family: 'Playfair Display SC', serif;
     background: rgba(233, 231, 231, 0.5);
-    position: absolute;
-    bottom: 220px;
+    /* margin-top: 200px; */
+    /* position: absolute;
+    bottom: 220px; */
     left: 0;
     right: 0;
     width: 95%;
     max-width: 45em;
-    margin: auto auto 1em;
+    margin: 70px auto 1em;
     box-sizing: border-box;
     padding: 2em;
     line-height: 1.5;

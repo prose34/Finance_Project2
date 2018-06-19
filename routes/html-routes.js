@@ -5,6 +5,7 @@
 // Dependencies
 // =============================================================
 var path = require("path");
+var db = require("../models");
 
 
 // Routes
@@ -31,6 +32,7 @@ module.exports = function(app, passport) {
   // portfolio route loads portfolio.html
   app.get("/portfolio", isLoggedIn, function(req, res) {
     console.log(JSON.stringify(req.user))
+    console.log(req.body);
     res.sendFile(path.join(__dirname, "../public/portfolio.html"));
   });
 
@@ -49,6 +51,13 @@ module.exports = function(app, passport) {
     });
   });
 
+
+  // app.post('/signin', function(req, res) {
+  //   console.log(req.body);
+  //   db.User.create(req.body).then(function(dbUser) {
+  //     res.json(dbUser);
+  //   })
+  // })
   
   app.post('/signin', passport.authenticate('local-signin', {
       successRedirect: '/portfolio',
@@ -59,8 +68,17 @@ module.exports = function(app, passport) {
  
   function isLoggedIn(req, res, next) {
  
+    console.log(req.body);
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+
+    console.log(res.body);
     if (req.isAuthenticated())
      
+
         return next();
          
     res.redirect('/signin');

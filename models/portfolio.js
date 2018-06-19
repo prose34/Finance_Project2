@@ -31,20 +31,21 @@ module.exports = function(sequelize, DataTypes) {
             }
         },        
     });
+
+    // Investment.associate = function(models) {
+    //     // We're saying that an Investment should belong to a User
+    //     // An investment can't be created without a User due to the foreign key constraint
+    //     Investment.belongsTo(models.User, {
+    //       foreignKey: {
+    //         allowNull: false
+    //       }
+    //     });
+    // };
     
     return Investment;
 }
 
 // add validation
   
-    // Investments.associate = function(models) {
-    //   // We're saying that an Investment should belong to an Investor
-    //   // An investment can't be created without an Investor due to the foreign key constraint
-    //   Investments.belongsTo(models.Author, {
-    //     foreignKey: {
-    //       allowNull: false
-    //     }
-    //   });
-    // };
 
   
