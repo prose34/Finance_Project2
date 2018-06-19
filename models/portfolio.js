@@ -32,15 +32,15 @@ module.exports = function(sequelize, DataTypes) {
         },        
     });
 
-    Investment.associate = function(models) {
-        // We're saying that an Investment should belong to a User
-        // An investment can't be created without a User due to the foreign key constraint
-        Investment.belongsTo(models.User, {
-          foreignKey: {
-            allowNull: false
-          }
-        });
-    };
+    // Investment.associate = function(models) {
+    //     // We're saying that an Investment should belong to a User
+    //     // An investment can't be created without a User due to the foreign key constraint
+    //     Investment.belongsTo(models.User, {
+    //       foreignKey: {
+    //         allowNull: false
+    //       }
+    //     });
+    // };
     
     return Investment;
 }

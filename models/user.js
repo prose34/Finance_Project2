@@ -39,13 +39,13 @@ module.exports = function(sequelize, Sequelize) {
         },
     });
 
-    User.associate = function(models) {
-        // Associating User with Investments
-        // When an User is deleted, also delete any associated Investments
-        User.hasMany(models.Investment, {
-          onDelete: "cascade"
-        });
-    };
+    // User.associate = function(models) {
+    //     // Associating User with Investments
+    //     // When an User is deleted, also delete any associated Investments
+    //     User.hasMany(models.Investment, {
+    //       onDelete: "cascade"
+    //     });
+    // };
  
     return User;
  
