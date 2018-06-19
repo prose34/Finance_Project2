@@ -15,7 +15,14 @@ module.exports = function(app) {
   // GET route for getting all of the todos
   app.get("/api/portfolio", function(req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Investment.findAll({}).then(function(dbInvestment) {
+    var query = {};
+    if(req.query.UserId) {
+      query.UserId = req.query.UserId;
+    }
+    db.Investment.findAll({
+      where: query,
+      include: [db.User]
+    }).then(function(dbInvestment) {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbInvestment);
     //   console.log(dbInvestment);

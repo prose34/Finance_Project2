@@ -25,6 +25,10 @@ module.exports = function(app, passport) {
     successRedirect: '/portfolio',
 
     failureRedirect: '/'
+  }, function(req, res) {
+    db.User.create(req.body).then(function(dbUser){
+      res.json(dbUser);
+    })
     
   }));
 
@@ -58,12 +62,27 @@ module.exports = function(app, passport) {
   //     res.json(dbUser);
   //   })
   // })
+
+  // app.get('/signin', function(req, res) {
+  //   db.User.findAll({
+  //     include: [db.Investment]
+  //   }).then(function(dbUser) {
+  //     res.JSON(dbUser);
+  //   })
+  // })
   
   app.post('/signin', passport.authenticate('local-signin', {
       successRedirect: '/portfolio',
       failureRedirect: '/'
 
-  }));
+  }
+  // , function(req, res) {
+  //     db.User.create(req.body).then(function(dbUser){
+  //       res.json(dbUser);
+  //     })
+
+  // }
+));
 
  
   function isLoggedIn(req, res, next) {

@@ -1,6 +1,6 @@
 module.exports = function(sequelize, Sequelize) {
  
-    var User = sequelize.define('user', {
+    var User = sequelize.define('User', {
  
         id: {
             autoIncrement: true,
@@ -39,13 +39,13 @@ module.exports = function(sequelize, Sequelize) {
         },
     });
 
-    // User.associate = function(models) {
-    //     // Associating User with Investments
-    //     // When an User is deleted, also delete any associated Investments
-    //     User.hasMany(models.Investment, {
-    //       onDelete: "cascade"
-    //     });
-    // };
+    User.associate = function(models) {
+        // Associating User with Investments
+        // When an User is deleted, also delete any associated Investments
+        User.hasMany(models.Investment, {
+          onDelete: "cascade"
+        });
+    };
  
     return User;
  
