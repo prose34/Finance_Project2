@@ -55,7 +55,7 @@ require("./routes/html-routes.js")(app,passport);  // change the routes!
 
 // Load passport strategies from passport.js
 // =============================================================
-require("./config/passport/passport.js")(passport, models.user);
+require("./config/passport/passport.js")(passport, models.User);
 
 
 // Sync Database 

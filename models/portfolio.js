@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
+
     var Investment = sequelize.define("Investment", {
         // Giving the Investment model a name type of String
         symbol: {
@@ -29,36 +30,24 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 // insert here
             }
-        },    
-
-        uuid: {
-            type: Sequelize.UUID,
-            primaryKey: true
-        },
-       
-
-      
-    },
-
-    {classMethods: {
-        associate: function(models) {
-          Investment.belongsTo(models.User);
-        }
-      }
+        },   
+   
     });
     
+    
     // add validation
-    Investment.belongsTo(User); // Will add company_uuid to user
    
-    // Investment.associate = function(models) {
-    //     // We're saying that a Post should belong to an Author
-    //     // A Post can't be created without an Author due to the foreign key constraint
-    //     Investment.belongsTo(models.User, {
-    //       foreignKey: {
-    //         allowNull: false
-    //       }
-    //     });
-    //   };
+    Investment.associate = function(models) {
+        // We're saying that a Post should belong to an Author
+        // A Post can't be created without an Author due to the foreign key constraint
+        Investment.belongsTo(models.User, {
+          foreignKey: {
+            allowNull: false
+          }
+        });
+    
+
+    };
     
     return Investment;
 }
