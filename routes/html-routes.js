@@ -56,6 +56,7 @@ module.exports = function(app, passport) {
 
   }));
 
+  // app.get('/portfolio', (req, res) => res.send("Welcome "+req.user.firstname+" "+req.user.lastname+"!!"));
  
   function isLoggedIn(req, res, next) {
  

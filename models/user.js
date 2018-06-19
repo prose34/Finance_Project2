@@ -41,6 +41,12 @@ module.exports = function(sequelize, Sequelize) {
       
     });
  
+    // User.associate = (models) => {
+        
+    //     User.hasMany(models.Text, { foreignKey: 'userId', sourceKey: 'id' });
+    //     User.hasMany(models.Comment, { foreignKey: 'userId', sourceKey: 'id' })
+    // };
+    
     return User;
  
 }

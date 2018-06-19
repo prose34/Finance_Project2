@@ -26,13 +26,24 @@ img.logo {
     /* margin-left: 40px; */
 }
 
+#portNav {
+    height: 62px;
+    border-bottom: 2px solid rgb(177, 177, 177);
+}
+
+#portItem{
+    font-size:15px;
+    font-family: 'Playfair Display SC', serif;
+    /* padding: 5px; */
+    
+}
+
 .navbar {
     font-size: 20px;
     border-bottom: 2px solid lightgray;
     background-color: gray;
     padding: 10px;
     font-family: 'Playfair Display SC', serif;
-    /* text-align: center; */
 }
 
 .navbar-dark .navbar-brand {
@@ -49,7 +60,7 @@ img.logo {
     font-family: 'Playfair Display SC', serif;
     background: rgba(233, 231, 231, 0.5);
     position: absolute;
-    bottom: 220px;
+    bottom: 180px;
     left: 0;
     right: 0;
     width: 95%;
@@ -58,34 +69,20 @@ img.logo {
     box-sizing: border-box;
     padding: 2em;
     line-height: 1.5;
-
     text-align: center;
     
 }
 
-
-/* VIDEO  */
-
-
-.no-video .video-container .poster,
-.touch .video-container .poster {
-    display: block !important;
+#myParagraph {
+    font-size:30px;
 }
 
-.video-container {
-    position: relative;
-    top:5px;
-    bottom: 0%;
-    left: 0%;
-    height: 650px;
-    width: auto;
-    overflow: hidden;
+/* Portfolio NavBar and Button */
 
+.btn-secondary{
+    background-color: rgb(36, 165, 165);
+    border-color: rgb(36, 165, 165);
 }
-/* .video-container video.fillWidth {
-    width: 100%;
-    
-} */
 
 /* Materialize  Modal*/
 
@@ -132,5 +129,119 @@ h5
     font-size: 40px;
 }
 
+/* VIDEO  */
 
+
+/* .no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}
+
+.video-container {
+    position: relative;
+    top:5px;
+    bottom: 0%;
+    left: 0%;
+    height: 650px;
+    width: auto;
+    overflow: hidden;
+
+} */
+/* .video-container video.fillWidth {
+    width: 100%;
+    
+} */
+
+
+
+
+
+/* Mobile responsiveness */
+
+/* X-Small devices (iphones breaking point 414) */
+
+@media (max-width: 414px) and (min-width:300px) { 
+
+    body html {
+
+        height: 100%;
+ 
+    }
+
+    .overlay {
+        font-family: 'Playfair Display SC', serif;
+        background: rgba(233, 231, 231, 0.5);
+        position: absolute;
+        bottom: 100px;
+        /* top: 40%; */
+        height: 380px;
+        width: auto;
+        margin: auto auto 1em;
+        box-sizing: border-box;
+        /* padding: 2em; */
+        line-height: 1.5;
+        text-align: center;
+     
+        
+    }
+
+    #myParagraph {
+        font-size: 20px;
+    }
+
+    .userInput {
+        width: 391px;
+        height: 377px;
+    }
+
+    #userTable {
+        width: 390px;
+        height: 400px;
+    }
+}
+
+   
+
+/* Small devices (tablets, 768px and up) */
+
+@media (max-width: 768px) and (min-width: 450px) { 
+    body html {
+
+        height: 100%;
+
+        
+    }
+
+    .overlay {
+        font-family: 'Playfair Display SC', serif;
+        background: rgba(233, 231, 231, 0.5);
+        position: absolute;
+        bottom: 100px;
+        height: 380px;
+        width: auto;
+        /* max-width: 45em; */
+        margin: auto auto 1em;
+        box-sizing: border-box;
+        /* padding: 2em; */
+        line-height: 1.5;
+        text-align: center;
+        
+    }
+
+    #myParagraph {
+        font-size: 30px;
+    }
+
+    .userInput {
+        width: 391px;
+        height: 377px;
+    }
+
+    #userTable {
+        width: 390px;
+        height: 400px;
+    }
+
+
+}  
 
