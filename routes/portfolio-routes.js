@@ -15,7 +15,9 @@ module.exports = function(app) {
   // GET route for getting all of the todos
   app.get("/api/portfolio", function(req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Investment.findAll({}).then(function(dbInvestment) {
+    db.Investment.findOne({
+      
+    }).then(function(dbInvestment) {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbInvestment);
     //   console.log(dbInvestment);
@@ -31,7 +33,7 @@ module.exports = function(app) {
     // and complete property (req.body)
     db.Investment.create({
         symbol: req.body.symbol,
-        costBasis: req.body.costBasis,
+        purchasePrice: req.body.purchasePrice,
         totalShares: req.body.totalShares,
         purchaseDate: req.body.purchaseDate
     }).then(function(dbInvestment) {
@@ -64,3 +66,6 @@ module.exports = function(app) {
     });
   });
 };
+
+
+// CostBasis

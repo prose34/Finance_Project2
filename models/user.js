@@ -2,11 +2,11 @@ module.exports = function(sequelize, Sequelize) {
  
     var User = sequelize.define('user', {
  
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
-        },
+        // id: {
+        //     autoIncrement: true,
+        //     primaryKey: true,
+        //     type: Sequelize.INTEGER
+        // },
  
         firstname: {
             type: Sequelize.STRING,
@@ -37,15 +37,30 @@ module.exports = function(sequelize, Sequelize) {
         last_login: {
             type: Sequelize.DATE
         },
- 
-      
-    });
- 
-    // User.associate = (models) => {
+
+
+
+
         
-    //     User.hasMany(models.Text, { foreignKey: 'userId', sourceKey: 'id' });
-    //     User.hasMany(models.Comment, { foreignKey: 'userId', sourceKey: 'id' })
-    // };
+    },{
+        classMethods: {
+          associate: function(models) {
+            User.hasMany(models.Investment);
+          }
+        }
+    });
+
+
+
+
+ 
+//    User.associate = function(models) {
+//         // Associating User with Investments
+//         // When an User is deleted, also delete any associated Investments
+//         User.hasMany(models.Investment, {
+//           onDelete: "cascade"
+//         });
+//     };
     
     return User;
  

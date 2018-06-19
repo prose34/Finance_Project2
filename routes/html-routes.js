@@ -58,15 +58,36 @@ module.exports = function(app, passport) {
 
   // app.get('/portfolio', (req, res) => res.send("Welcome "+req.user.firstname+" "+req.user.lastname+"!!"));
  
+  // function isLoggedIn(req, res, next) {
+ 
+  //   if (req.isAuthenticated())
+     
+  //       return next();
+         
+  //   res.redirect('/signin');
+ 
+  // } 
+
+
   function isLoggedIn(req, res, next) {
  
+    console.log(req.body);
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+
+    console.log(res.body);
     if (req.isAuthenticated())
      
+
         return next();
          
     res.redirect('/signin');
- 
-  } 
+    
+  }
+
 
 };
 

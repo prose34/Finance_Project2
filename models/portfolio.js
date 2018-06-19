@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
                 // insert here
             }
         },
-        costBasis: {
+        purchasePrice: {
             type: DataTypes.FLOAT(10, 2), //is this correct?
             allowNull: false,
             validate: {
@@ -29,22 +29,40 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 // insert here
             }
-        },        
+        },    
+
+        uuid: {
+            type: Sequelize.UUID,
+            primaryKey: true
+        },
+       
+
+      
+    },
+
+    {classMethods: {
+        associate: function(models) {
+          Investment.belongsTo(models.User);
+        }
+      }
     });
+    
+    // add validation
+    Investment.belongsTo(User); // Will add company_uuid to user
+   
+    // Investment.associate = function(models) {
+    //     // We're saying that a Post should belong to an Author
+    //     // A Post can't be created without an Author due to the foreign key constraint
+    //     Investment.belongsTo(models.User, {
+    //       foreignKey: {
+    //         allowNull: false
+    //       }
+    //     });
+    //   };
     
     return Investment;
 }
 
-// add validation
-  
-    // Investments.associate = function(models) {
-    //   // We're saying that an Investment should belong to an Investor
-    //   // An investment can't be created without an Investor due to the foreign key constraint
-    //   Investments.belongsTo(models.Author, {
-    //     foreignKey: {
-    //       allowNull: false
-    //     }
-    //   });
-    // };
+
 
   

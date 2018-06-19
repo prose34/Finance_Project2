@@ -31,7 +31,7 @@ $(document).ready(function() {
             // console.log(investments[i].symbol);
             let companyTicker = investments[i].symbol;
             let totalShares = investments[i].totalShares;
-            let costBasis = investments[i].costBasis;
+            let purchasePrice = investments[i].purchasePrice;
             let purchaseDate = investments[i].purchaseDate;
 
             const queryURL = 'https://api.iextrading.com/1.0/stock/' + companyTicker + '/book';
@@ -48,7 +48,7 @@ $(document).ready(function() {
                     // console.log(response);
                     // console.log(investments[i].symbol);
                     let marketValue = parseFloat(Math.round(totalShares * response.quote.latestPrice)).toFixed(0);
-                    let originalCost = totalShares * costBasis;
+                    let originalCost = totalShares * purchasePrice;
 
                     // portfolioValue += marketValue; 
                     // console.log(marketValue);
@@ -60,7 +60,7 @@ $(document).ready(function() {
                     let rateOfReturn = parseFloat(Math.round(((marketValue - originalCost) / originalCost) * 100)).toFixed(1);
                     let gainLoss = Math.round(marketValue - originalCost);
 
-                    $("#investmentTable").append("<tr><td>" + response.quote.companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+costBasis + "</td><td>" + purchaseDate + "</td><td>" + "$"+response.quote.latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + rateOfReturn+"%" + "</td><td>" + "$"+gainLoss + "</td></tr>");
+                    $("#investmentTable").append("<tr><td>" + response.quote.companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+purchasePrice + "</td><td>" + purchaseDate + "</td><td>" + "$"+response.quote.latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + rateOfReturn+"%" + "</td><td>" + "$"+gainLoss + "</td></tr>");
                 });    
         };
 
@@ -69,7 +69,7 @@ $(document).ready(function() {
         //     console.log(response);
         //     console.log(investments);
 
-            // $("#investmentTable").append("<tr><td>" + response.quote.companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+costBasis + "</td><td>" + purchaseDate + "</td><td>" + "$"+response.quote.latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + portfolioPercent+"%" + "</td><td>" + rateOfReturn+"%" + "</td><td>" + "$"+gainLoss + "</td></tr>");
+            // $("#investmentTable").append("<tr><td>" + response.quote.companyName + "</td><td>" + companyTicker + "</td><td>" + totalShares + "</td><td>" + "$"+purchasePrice + "</td><td>" + purchaseDate + "</td><td>" + "$"+response.quote.latestPrice + "</td><td>" + "$"+marketValue + "</td><td>" + portfolioPercent+"%" + "</td><td>" + rateOfReturn+"%" + "</td><td>" + "$"+gainLoss + "</td></tr>");
 
             // responses.forEach(function(response, i) {
             //     tableData[i]['latestPrice'] = response.quote.latestPrice;
@@ -92,7 +92,7 @@ $(document).ready(function() {
 
         var tickerInput = $("#tickerInput");
         var sharesInput = $("#sharesInput");
-        var costBasisInput = $("#costBasisInput");
+        var purchasePriceInput = $("#purchasePriceInput");
         var dateInput = $("#dateInput");
 
         createNewInvestment();
@@ -101,7 +101,7 @@ $(document).ready(function() {
 
             // event.preventDefault();
 
-            if (!tickerInput.val().trim() || !sharesInput.val().trim() || !costBasisInput.val().trim() || !dateInput.val().trim()) {
+            if (!tickerInput.val().trim() || !sharesInput.val().trim() || !purchasePriceInput.val().trim() || !dateInput.val().trim()) {
                 alert("Please enter all investment information");
                 // Add more user validation? Correct symbol, no more than # of shares, no higher than x share price?
                 return;
@@ -109,17 +109,19 @@ $(document).ready(function() {
                 var newInvestment = {
                     symbol: tickerInput.val().trim(),
                     totalShares: sharesInput.val().trim(),
-                    costBasis: costBasisInput.val().trim(),
+                    purchasePrice: purchasePriceInput.val().trim(),
                     purchaseDate: dateInput.val().trim(),
                 };
                 // console.log(newInvestment);
 
-                $.post("/api/portfolio", newInvestment);
+                $.post("/api/portfolio", newInvestment).then(function(){
+                    location.reload();
+                });
                 // $.post("/api/portfolio", newInvestment, getInvestments);
 
                 tickerInput.val("");
                 sharesInput.val("");
-                costBasisInput.val("");
+                purchasePriceInput.val("");
                 dateInput.val("");
 
                 getInvestments();
