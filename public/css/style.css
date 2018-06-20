@@ -17,6 +17,8 @@ body, html {
     margin: 0;
 }
 
+
+
 img.logo {
     height: 75px;
     width: 75px;
@@ -57,14 +59,16 @@ img.logo {
 }
 
 .overlay {
-    font-family: 'Playfair Display SC', serif;
-    background: rgba(233, 231, 231, 0.5);
+
+    background: rgba(233, 231, 231, 0.7);
+    /* background:rgb(53,58,63,.5); */
     position: absolute;
-    bottom: 180px;
+    bottom: 160px;
     left: 0;
     right: 0;
-    width: 95%;
-    max-width: 45em;
+    width: 60%;
+    height: 50%;
+    /* max-width: 45em; */
     margin: auto auto 1em;
     box-sizing: border-box;
     padding: 2em;
@@ -75,8 +79,24 @@ img.logo {
 
 #myParagraph {
     font-size:30px;
+    font-family: 'Playfair Display SC', serif;
+   
+  
 }
 
+.subTitle {
+    font-family: 'Playfair Display SC', serif;
+    font-weight: bold;
+    margin-top: 0px;
+    color:rgb(36, 165, 165);
+    
+}
+
+.headTitle {
+    font-family: 'Playfair Display SC', serif;
+    font-weight: bold;
+    margin-top: 0px;
+}
 /* Portfolio NavBar and Button */
 
 .btn-secondary{
@@ -211,6 +231,7 @@ h5
 
         
     }
+
 
     .overlay {
         font-family: 'Playfair Display SC', serif;

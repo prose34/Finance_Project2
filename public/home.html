@@ -19,6 +19,10 @@
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<!-- Google API -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-client_id" content="513676915276-hp7kv51jikqb43l2gd9dev3pl62k0ct6.apps.googleusercontent.com">
+	<meta name="google-signin-scope" content="profile email">
 
 
 </head>
@@ -76,9 +80,10 @@
 
 		<div class="overlay">
 			
-				<h1>Finance</h1>
-				<br>
-				<p id="myParagraph">This is going to be a praragraph with stuff and it's going to be great.</p>
+			<h1 class="headTitle">Finanza</h1>
+			<h3 class="subTitle">Empower Yourself</h3>
+			<br>
+			<p id="myParagraph">Manage your investment portfolio, track your returns, and research your next investment. Take control of your financial future!</p>
 		
 		</div>
 			
@@ -123,6 +128,7 @@
 							<br>
 							<center>
 								<button class="btn waves-effect waves-light grey" type="submit" name="action" value="Sign In">Sign In</button>
+								<div class="g-signin2" data-onsuccess="onSignIn"></div>
 								<br>
 								<br>
 							</center>
@@ -165,6 +171,7 @@
 	
 							<center>
 								<button class="btn waves-effect waves-light grey" type="submit" value="SignUp" name="action">Sign Up</button>
+								<div class="g-signin2" data-onsuccess="onSignIn"></div>
 								<br>
 								<br>
 				
@@ -216,18 +223,22 @@
 		});
 		
 
-		// NAV BAR
-		(function($){
-			$(function(){
 
-				$('.button-collapse').sideNav();
-				$('.parallax').parallax();
-				$('select').material_select();
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
 
-				$('.modal-trigger').leanModal();
-
-			}); // end of document ready
-		})(jQuery); // end of jQuery name space
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+ 
 
 	</script>
 </body>
