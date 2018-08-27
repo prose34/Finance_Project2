@@ -28,7 +28,7 @@ Finanza offers users the ability to create a personalized financial portfolio. I
 # Built With
 - Visual Studio Code
 
-# Prerequisites
+# Pre-requisites
 
 
 - [jQuery](http://code.jquery.com/)
